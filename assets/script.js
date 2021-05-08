@@ -10,17 +10,17 @@ function generatePassword() {
 
 // if user clicks cancel on first prompt
   var confirmLength = prompt("How many characters would you like in your password? Please choose a number between 8 and 128.");
-  if (confirmLength === null) {
+  if (confirmLength === null || isNaN(confirmLength)) {
     alert("Please press Generate Password to try again.");
-    return confirmLength;
+    return location.reload();
   }
 // if user chooses a number out of range
   while (confirmLength < 8 || confirmLength > 128) {
     alert("Please enter a number between 8 and 128.");
     var confirmLength = (prompt("How many characters would you like your password to contain?"));
-    if (confirmLength === null) {
-      alert("Click on Generate Password to try again.");
-      return confirmLength;
+    if (confirmLength === null || isNaN(confirmLength)) {
+      alert("Please press Generate Password to try again.");
+      return location.reload();
     }
   }
   
@@ -50,7 +50,7 @@ function generatePassword() {
 // if user does not choose any character choices
   if (!confirmLowercase && !confirmUppercase && !confirmSpecial && !confirmNumbers) {
     alert("Your password must contain at least one type of character!");
-    return; // undefined bug
+    return location.reload();
 }
 // add empty string for random password
   var randomPassword = "";
