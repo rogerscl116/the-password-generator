@@ -14,7 +14,7 @@ function generatePassword() {
     alert("Please press Generate Password to try again.");
     return confirmLength;
   }
-
+// if user chooses a number out of range
   while (confirmLength < 8 || confirmLength > 128) {
     alert("Please enter a number between 8 and 128.");
     var confirmLength = (prompt("How many characters would you like your password to contain?"));
@@ -24,7 +24,7 @@ function generatePassword() {
     }
   }
   
-
+// add empty array for password choices
   var passwordPool = [];
 
   var confirmLowercase = confirm("Would you like to use lowercase characters?");
@@ -47,10 +47,12 @@ function generatePassword() {
     passwordPool = passwordPool.concat(numbers)
 }
 
+// if user does not choose any character choices
   if (!confirmLowercase && !confirmUppercase && !confirmSpecial && !confirmNumbers) {
     alert("Your password must contain at least one type of character!");
-    return; // fix bug with undefined text
-  }
+    return; // undefined bug
+}
+// add empty string for random password
   var randomPassword = "";
 
   for (var i = 0; i < confirmLength; i++) {
