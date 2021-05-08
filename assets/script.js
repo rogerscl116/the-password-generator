@@ -8,11 +8,22 @@ var numbers = [0,1,2,3,4,5,6,7,8,9];
 // add prompt and confirms to generatePassword function
 function generatePassword() {
 
+// if user clicks cancel on first prompt
   var confirmLength = prompt("How many characters would you like in your password? Please choose a number between 8 and 128.");
-  if (confirmLength === null || confirmLength < 8 || confirmLength > 128) {
-    alert("Please enter a number between 8 and 128.");
+  if (confirmLength === null) {
+    alert("Please press Generate Password to try again.");
     return confirmLength;
   }
+
+  while (confirmLength < 8 || confirmLength > 128) {
+    alert("Please enter a number between 8 and 128.");
+    var confirmLength = (prompt("How many characters would you like your password to contain?"));
+    if (confirmLength === null) {
+      alert("Click on Generate Password to try again.");
+      return confirmLength;
+    }
+  }
+  
 
   var passwordPool = [];
 
@@ -38,7 +49,7 @@ function generatePassword() {
 
   if (!confirmLowercase && !confirmUppercase && !confirmSpecial && !confirmNumbers) {
     alert("Your password must contain at least one type of character!");
-    return;
+    return; // fix bug with undefined text
   }
   var randomPassword = "";
 
